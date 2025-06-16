@@ -4,7 +4,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "XuXiaolan"
 name = "YandereCuteamena"
-description = "xu xu xu xu xu"
+description = "Adds in a new... enemy?"
 websiteUrl = "https://github.com/TeamXiaolan/YandereCuteamena"
 containsNsfwContent = false
 [package.dependencies]
