@@ -1,4 +1,4 @@
-## Yandere Cuteamena
+# Yandere Cuteamena
 
 - Commissioned enemy mod.
 - New enemy that's friendly and helpful to the player, seemingly anyway.

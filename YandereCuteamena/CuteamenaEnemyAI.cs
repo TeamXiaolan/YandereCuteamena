@@ -86,7 +86,7 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
     {
         base.Start();
         _headPatTrigger.onInteract.AddListener(OnHeadPatInteract);
-        smartAgentNavigator.StartSearchRoutine(this.transform.position, 40f);
+        smartAgentNavigator.StartSearchRoutine(40f);
         agent.speed = _wanderSpeed;
         _healTimer = _healCooldown;
     }
@@ -317,7 +317,7 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
     {
         PlayerControllerB player = playerControllerReference;
         creatureNetworkAnimator.SetTrigger(PetAnimation);
-        creatureSFX.PlayOneShot(_patSounds[UnityEngine.Random.Range(0, _patSounds.Length)]);
+        // creatureSFX.PlayOneShot(_patSounds[UnityEngine.Random.Range(0, _patSounds.Length)]);
 
         if (currentBehaviourStateIndex != (int)CuteamenaState.Jealous)
             return;
@@ -353,7 +353,7 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
     {
         targetPlayer.DamagePlayerFromOtherClientServerRpc(-_healAmount, this.transform.position, Array.IndexOf(StartOfRound.Instance.allPlayerScripts, targetPlayer));
         // Plugin.ExtendedLogging("Cuteamena healed her Senpai!");
-        creatureSFX.PlayOneShot(_cheerUpSound);
+        // creatureSFX.PlayOneShot(_cheerUpSound);
     }
 
     private void FindThreatsNearbySenpai()
@@ -497,7 +497,7 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
         if (_griefingSource.isPlaying)
             return;
 
-        _griefingSource.Play();
+        // _griefingSource.Play();
     }
 
     public void FootstepSoundAnimEvent()
@@ -510,7 +510,7 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
         _isCleaverDrawn = true;
         _cleaverGameObject.SetActive(true);
         // Plugin.ExtendedLogging("Cuteamena has drawn her meat cleaver! Yandere mode engaged!");
-        creatureSFX.PlayOneShot(_yandereLaughSound);
+        // creatureSFX.PlayOneShot(_yandereLaughSound);
     }
 
     public void DropCleaverAnimEvent()
@@ -589,7 +589,7 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
         if (playerWhoHit == null || currentBehaviourStateIndex == (int)CuteamenaState.Yandere)
             return;
 
-        _griefingSource.Stop();
+        // _griefingSource.Stop();
         if (currentBehaviourStateIndex == (int)CuteamenaState.Jealous)
         {
             creatureNetworkAnimator.SetTrigger(PullOutKnifeAnimation);
@@ -603,7 +603,7 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
     public override void KillEnemy(bool destroy = false)
     {
         base.KillEnemy(destroy);
-        _griefingSource.Stop();
+        // _griefingSource.Stop();
         _cleaverGameObject.SetActive(false);
         if (!IsServer)
             return;
