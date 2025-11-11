@@ -7,7 +7,9 @@ using System.Reflection;
 using UnityEngine;
 
 namespace YandereCuteamena;
+
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+[BepInDependency(DuskMod.PLUGIN_GUID, BepInDependency.DependencyFlags.HardDependency)]
 public class YandereCuteamena : BaseUnityPlugin
 {
 	internal new static ManualLogSource Logger { get; private set; }
@@ -29,7 +31,9 @@ public class YandereCuteamena : BaseUnityPlugin
 
         AssetBundle mainBundle = AssetBundleUtils.LoadBundle(Assembly.GetExecutingAssembly(), "yanderecuteamenaassets");
         Assets = new MainAssets(mainBundle);
-        Mod = DuskMod.RegisterMod(this, mainBundle);
+		Mod = DuskMod.RegisterMod(this, mainBundle);
+		
+		Mod.RegisterContentHandlers();
 
 		Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID} v{MyPluginInfo.PLUGIN_VERSION} has loaded!");
 	}

@@ -102,6 +102,7 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
         if (!IsServer)
             return;
 
+        _threatFindTimer -= Time.deltaTime;
         _healTimer -= Time.deltaTime;
         _doorLockpickTimer -= Time.deltaTime;
         _attackTimer -= Time.deltaTime;
@@ -171,11 +172,10 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
                 return;
             }
             smartAgentNavigator.DoPathingToDestination(targetEnemy.transform.position);
-
             if (_attackTimer > 0)
                 return;
 
-            if (Vector3.Distance(transform.position, targetEnemy.transform.position) < 2f)
+            if (Vector3.Distance(transform.position, targetEnemy.transform.position) < agent.stoppingDistance)
             {
                 _attackTimer = _attackInterval;
                 creatureNetworkAnimator.SetTrigger(HeadbuttAnimation);
@@ -188,7 +188,7 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
             // Plugin.ExtendedLogging($"Cuteamena is going to {_targetDoor.name}");
             smartAgentNavigator.DoPathingToDestination(RoundManager.Instance.GetRandomNavMeshPositionInRadius(_targetDoor.transform.position, 2f, default));
 
-            if (Vector3.Distance(transform.position, _targetDoor.transform.position) < agent.stoppingDistance)
+            if (Vector3.Distance(transform.position, _targetDoor.transform.position) < agent.stoppingDistance + 1f)
             {
                 // Plugin.ExtendedLogging($"Cuteamena headbutted {_targetDoor.name}");
                 creatureNetworkAnimator.SetTrigger(HeadbuttAnimation);
@@ -518,8 +518,7 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
     {
         _isCleaverDrawn = false;
         _cleaverGameObject.SetActive(false);
-        // CuteamenaUtils.Instance.SpawnScrap(LethalContent.Items[].Item, _cleaverGameObject.transform.position, true, 0);
-        // todo: Instantiate or spawn the meat cleaver as scrap
+        CuteamenaUtils.Instance.SpawnScrap(LethalContent.Items[YandereCuteamenaItemKeys.Cleaver].Item, _cleaverGameObject.transform.position, true, 0);
         // Plugin.ExtendedLogging("Meat cleaver dropped as scrap.");
     }
 
@@ -542,6 +541,10 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
         else if (_chasingPlayer != null)
         {
             AttackPlayerWithAttackType(_chasingPlayer, AttackType.Headbutt);
+        }
+        else if (targetEnemy != null)
+        {
+            targetEnemy.HitEnemy(1, targetPlayer, true, -1);
         }
         else
         {

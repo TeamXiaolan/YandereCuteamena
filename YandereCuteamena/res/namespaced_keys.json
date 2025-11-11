@@ -1,0 +1,10 @@
+{
+  "YandereCuteamenaEnemyKeys": {
+    "__type": "DawnEnemyInfo",
+    "Cutea": "yandere_cuteamena:cutea"
+  },
+  "YandereCuteamenaItemKeys": {
+    "__type": "DawnItemInfo",
+    "Cleaver": "yandere_cuteamena:cleaver"
+  }
+}
