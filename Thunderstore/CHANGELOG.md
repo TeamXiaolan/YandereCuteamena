@@ -1,4 +1,12 @@
-# 1.0.3
+# 2.0.0
+
+- Fixed enemy targetting.
+- Fixed door interaction not going through.
+- Added clever as a droppable item.
+- Added ScanNode to cuteamena.
+- Updated to DawnLib.
+
+## 1.0.3
 
 - Updated to latest CodeRebirthLib 0.9.0.
 
