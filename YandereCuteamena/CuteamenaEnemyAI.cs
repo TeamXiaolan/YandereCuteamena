@@ -1,5 +1,6 @@
 using System;
-using CodeRebirthLib.Util;
+using Dawn;
+using Dawn.Utils;
 using GameNetcodeStuff;
 using Unity.Netcode;
 using UnityEngine;
@@ -483,13 +484,13 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
     #region Animation Events
     public void StartPatAnimEvent()
     {
-        smartAgentNavigator.cantMove = true;
+        smartAgentNavigator.DisableMovement(true);
         smartAgentNavigator.StopAgent();
     }
 
     public void EndPatAnimEvent()
     {
-        smartAgentNavigator.cantMove = false;
+        smartAgentNavigator.DisableMovement(false);
     }
 
     public void StartGriefingAnimEvent()
@@ -515,6 +516,9 @@ public class CuteamenaEnemyAI : AdvancedEnemyAI
 
     public void DropCleaverAnimEvent()
     {
+        _isCleaverDrawn = false;
+        _cleaverGameObject.SetActive(false);
+        // CuteamenaUtils.Instance.SpawnScrap(LethalContent.Items[].Item, _cleaverGameObject.transform.position, true, 0);
         // todo: Instantiate or spawn the meat cleaver as scrap
         // Plugin.ExtendedLogging("Meat cleaver dropped as scrap.");
     }

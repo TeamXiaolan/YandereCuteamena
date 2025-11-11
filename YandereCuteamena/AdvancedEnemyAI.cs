@@ -3,7 +3,7 @@ using GameNetcodeStuff;
 using UnityEngine;
 using System.Linq;
 using Unity.Netcode.Components;
-using CodeRebirthLib.Util.Pathfinding;
+using Dawn.Utils;
 
 namespace YandereCuteamena;
 

@@ -1,20 +1,15 @@
-﻿using CodeRebirthLib;
-using CodeRebirthLib.AssetManagement;
-using CodeRebirthLib.ContentManagement;
+﻿using Dusk;
 
 namespace YandereCuteamena;
-
 public class CuteamenaHandler : ContentHandler<CuteamenaHandler>
 {
-	public class CuteamenaBundle(CRMod mod, string filePath) : AssetBundleLoader<CuteamenaBundle>(mod, filePath)
+	public class CuteamenaBundle(DuskMod mod, string filePath) : AssetBundleLoader<CuteamenaBundle>(mod, filePath)
 	{
     }
 
-    public CuteamenaHandler(CRMod mod) : base(mod)
+	public CuteamenaBundle? Cuteamena = null;
+	public CuteamenaHandler(DuskMod mod) : base(mod)
 	{
-		if (TryLoadContentBundle("cuteaassets", out CuteamenaBundle? assets))
-		{
-			LoadAllContent(assets!);
-		}
+		RegisterContent("cuteaassets", out Cuteamena);
 	}
 }

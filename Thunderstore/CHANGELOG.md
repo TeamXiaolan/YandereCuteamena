@@ -1,4 +1,8 @@
-# 1.0.2
+# 1.0.3
+
+- Updated to latest CodeRebirthLib 0.9.0.
+
+## 1.0.2
 
 - Updated to latest CodeRebirthLib 0.2.0 again.
 
